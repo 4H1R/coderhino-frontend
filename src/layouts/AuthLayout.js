@@ -2,9 +2,14 @@ import React from "react";
 import { FaGoogle, FaApple } from "react-icons/fa";
 import { ReactComponent as Image } from "assets/svg/authBanner.svg";
 import GoogleLogin from "react-google-login";
+import { GOOGLE_CLIENT_ID } from "config";
+import axios from "libs/axios";
 
 const responseGoogle = (response) => {
-  console.log(response);
+  const tokenId = response.tokenId;
+  axios
+    .post("/api/google/", { auth_token: tokenId })
+    .then((resp) => console.log(resp));
 };
 
 function AuthLayout({ title, children }) {
@@ -16,7 +21,7 @@ function AuthLayout({ title, children }) {
         </h1>
         <div className="flex flex-col justify-center mt-10 space-y-2 sm:space-y-0 sm:flex-row sm:space-x-2">
           <GoogleLogin
-            clientId=""
+            clientId={GOOGLE_CLIENT_ID}
             render={(renderProps) => (
               <button
                 onClick={renderProps.onClick}

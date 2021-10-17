@@ -4,7 +4,6 @@ import Head from "components/Head";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { Button, Input, Link } from "components/auth/Form";
-import login from "services/auth/register";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -24,9 +23,7 @@ function Login() {
         initialValues={{ email: "", password: "" }}
         validationSchema={validationSchema}
         //  onSubmit outputs values for now
-        onSubmit={async (values, { setSubmitting }) => {
-          await login(values);
-        }}
+        onSubmit={async (values, { setSubmitting }) => {}}
       >
         <Form className="space-y-4">
           <div className="space-y-2">

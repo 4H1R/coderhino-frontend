@@ -3,15 +3,12 @@ import React from "react";
 import { Formik, Form } from "formik";
 import { Input, Button, Link } from "components/auth/Form";
 import * as Yup from "yup";
+import register from "services/auth/register";
 
 const validationSchema = Yup.object().shape({
-  name: Yup.string()
-    .min(3, "The name must be at least 3 characters.")
-    .max(20, "The name must not be greater than 50 characters.")
-    .required("The name field is required."),
   username: Yup.string()
     .min(3, "The username must be at least 3 characters.")
-    .max(31, "The name must not be greater than 31 characters.")
+    .max(31, "The username must not be greater than 31 characters.")
     .matches(/^[a-zA-Z0-9._]+$/, "The username format is invalid.")
     .required("The username field is required."),
   email: Yup.string()
@@ -42,11 +39,8 @@ function Register() {
         }}
         validationSchema={validationSchema}
         //  onSubmit outputs values for now
-        onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 400);
+        onSubmit={async (values, { setSubmitting }) => {
+          await register(values);
         }}
       >
         <Form className="space-y-4">

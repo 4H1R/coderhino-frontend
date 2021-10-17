@@ -1,7 +1,8 @@
 import { default as mainAxios } from "axios";
+import { BACKEND_URL } from "config";
 
 const axios = mainAxios.create({
-  baseURL: "http://localhost:8000",
+  baseURL: BACKEND_URL,
 });
 
 // For common config

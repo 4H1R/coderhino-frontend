@@ -6,6 +6,7 @@ import { store } from "./app/store";
 import { Provider } from "react-redux";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { HelmetProvider } from "react-helmet-async";
+require("dotenv").config();
 
 const queryClient = new QueryClient();
 ReactDOM.render(
