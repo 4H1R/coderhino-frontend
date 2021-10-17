@@ -35,7 +35,6 @@ function Register() {
       <Head title="Register" desc="Register page" />
       <Formik
         initialValues={{
-          name: "",
           username: "",
           email: "",
           password: "",
@@ -52,7 +51,6 @@ function Register() {
       >
         <Form className="space-y-4">
           <div className="space-y-2">
-            <Input name="name" />
             <Input name="username" />
             <Input name="email" type="email" />
             <Input name="password" type="password" />
