@@ -4,16 +4,20 @@ import AuthLayout from "layouts/AuthLayout";
 import Navbar from "components/Navbar";
 import Login from "pages/auth/Login";
 import Register from "pages/auth/Register";
+import GuestRoute from "components/routes/GuestRoute";
+import ProtectedRoute from "components/routes/ProtectedRoute";
+import Home from "pages/Home";
 
 function App() {
   return (
     <Router>
+      <Navbar />
       <Switch>
+        <ProtectedRoute exact path="/" component={Home} />
         <Route path={["/login", "/register"]}>
-          <Navbar />
           <AuthLayout>
-            <Route path="/login" component={Login} />
-            <Route path="/register" component={Register} />
+            <GuestRoute path="/login" component={Login} />
+            <GuestRoute path="/register" component={Register} />
           </AuthLayout>
         </Route>
       </Switch>

@@ -3,8 +3,11 @@ import axios from "libs/axios";
 export default async function register(data) {
   try {
     const resp = await axios.post("/api/signup/", data);
-    console.log(resp);
+    return {
+      success: true,
+      data: resp.data["User has been successfully registered"],
+    };
   } catch (e) {
-    console.log(e.response.status);
+    return { success: false, data: { email: e.response.data[0] } };
   }
 }

@@ -4,6 +4,9 @@ import Head from "components/Head";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { Button, Input, Link } from "components/auth/Form";
+import { useDispatch } from "react-redux";
+import { setUser } from "stores/userSlice";
+import login from "services/auth/login";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -16,6 +19,7 @@ const validationSchema = Yup.object().shape({
 });
 
 function Login() {
+  const dispatch = useDispatch();
   return (
     <>
       <Head title="Login" desc="Login page" />
@@ -23,7 +27,14 @@ function Login() {
         initialValues={{ email: "", password: "" }}
         validationSchema={validationSchema}
         //  onSubmit outputs values for now
-        onSubmit={async (values, { setSubmitting }) => {}}
+        onSubmit={async (values, { setErrors }) => {
+          const { success, data } = await login(values);
+          if (!success) {
+            setErrors(data);
+            return;
+          }
+          dispatch(setUser(data));
+        }}
       >
         <Form className="space-y-4">
           <div className="space-y-2">

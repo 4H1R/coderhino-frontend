@@ -9,7 +9,8 @@ const responseGoogle = (response) => {
   const tokenId = response.tokenId;
   axios
     .post("/api/google/", { auth_token: tokenId })
-    .then((resp) => console.log(resp));
+    .then((resp) => console.log(resp))
+    .catch((err) => console.log(err));
 };
 
 function AuthLayout({ title, children }) {

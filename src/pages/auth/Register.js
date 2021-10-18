@@ -4,6 +4,8 @@ import { Formik, Form } from "formik";
 import { Input, Button, Link } from "components/auth/Form";
 import * as Yup from "yup";
 import register from "services/auth/register";
+import { useDispatch } from "react-redux";
+import { setUser } from "stores/userSlice";
 
 const validationSchema = Yup.object().shape({
   username: Yup.string()
@@ -27,6 +29,7 @@ const validationSchema = Yup.object().shape({
 });
 
 function Register() {
+  const dispatch = useDispatch();
   return (
     <>
       <Head title="Register" desc="Register page" />
@@ -39,8 +42,13 @@ function Register() {
         }}
         validationSchema={validationSchema}
         //  onSubmit outputs values for now
-        onSubmit={async (values, { setSubmitting }) => {
-          await register(values);
+        onSubmit={async (values, { setErrors }) => {
+          const { success, data } = await register(values);
+          if (!success) {
+            setErrors(data);
+            return;
+          }
+          dispatch(setUser(data));
         }}
       >
         <Form className="space-y-4">
