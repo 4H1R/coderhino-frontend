@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { FaAlignJustify } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useLocation } from "react-router-dom";
+import logout from "../services/auth/logout";
+import { userLoggedOut } from "../stores/userSlice";
 
 function CustomNavLink({ to, children }) {
   return (
@@ -11,14 +14,29 @@ function CustomNavLink({ to, children }) {
 }
 
 function Links() {
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const dispatch = useDispatch();
+  async function handleLogout(dispatch) {
+    await logout();
+    dispatch(userLoggedOut());
+  }
   return (
     <>
       <CustomNavLink to="/technologies">Technologies</CustomNavLink>
       <CustomNavLink to="/blog">Blog</CustomNavLink>
       <CustomNavLink to="/about">About</CustomNavLink>
-      <Link to="/login" className="p-2 rounded-md gradient">
-        Get Started
-      </Link>
+      {isLoggedIn ? (
+        <button
+          className="p-2 rounded-md gradient"
+          onClick={() => handleLogout(dispatch)}
+        >
+          Logout
+        </button>
+      ) : (
+        <Link to="/login" className="p-2 rounded-md gradient">
+          Get Started
+        </Link>
+      )}
     </>
   );
 }
