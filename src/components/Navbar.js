@@ -6,7 +6,7 @@ import logout from "../services/auth/logout";
 import { userLoggedOut } from "../stores/userSlice";
 import { motion, AnimatePresence } from "framer-motion";
 
-function AnimatedDiv({ children, className = "", isOpen }) {
+function AnimatedDiv({ children, className = "" }) {
   return (
     <motion.nav
       className={className}
@@ -98,10 +98,7 @@ function Navbar() {
       {/* Links for mobile users */}
       <AnimatePresence>
         {isOpen && (
-          <AnimatedDiv
-            isOpen={isOpen}
-            className="flex flex-col py-4 space-y-4 bg-black sm:hidden"
-          >
+          <AnimatedDiv className="flex flex-col py-4 space-y-4 bg-black sm:hidden">
             <Links />
           </AnimatedDiv>
         )}
