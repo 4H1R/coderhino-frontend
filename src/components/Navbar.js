@@ -7,8 +7,8 @@ import { userLoggedOut } from "../stores/userSlice";
 import { motion } from "framer-motion";
 
 const variants = {
-  open: { opacity: 1 },
-  closed: { opacity: 0 },
+  open: {},
+  closed: {},
 };
 
 function AnimatedDiv({ children, className = "", isOpen }) {
@@ -79,8 +79,20 @@ function Navbar() {
           onClick={() => setIsOpen(!isOpen)}
           className="visible sm:hidden"
         >
-          {isOpen || <FaAlignJustify size={24} />}
-          {isOpen && <p className="text-2xl font-medium">X</p>}
+          {isOpen || (
+            <motion.div initial={{ rotate: 45 }} animate={{ rotate: 0 }}>
+              <FaAlignJustify size={24} />
+            </motion.div>
+          )}
+          {isOpen && (
+            <motion.p
+              initial={{ rotate: -45 }}
+              animate={{ rotate: 0 }}
+              className="text-2xl font-medium"
+            >
+              X
+            </motion.p>
+          )}
         </button>
         <div className="items-center justify-between hidden space-x-12 sm:flex">
           {/* Links for tablet and pc users */}
