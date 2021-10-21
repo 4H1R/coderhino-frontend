@@ -4,16 +4,20 @@ import { ReactComponent as Image } from "assets/svg/authBanner.svg";
 import GoogleLogin from "react-google-login";
 import { GOOGLE_CLIENT_ID } from "config";
 import axios from "libs/axios";
+import { useDispatch } from "react-redux";
+import { setUser } from "stores/userSlice";
 
-const responseGoogle = (response) => {
+const responseGoogle = (response, dispatch) => {
+  console.log(response);
   const tokenId = response.tokenId;
   axios
     .post("/api/google/", { auth_token: tokenId })
-    .then((resp) => console.log(resp))
+    .then((resp) => dispatch(setUser(resp)))
     .catch((err) => console.log(err));
 };
 
 function AuthLayout({ title, children }) {
+  const dispatch = useDispatch();
   return (
     <div className="grid grid-cols-1 space-x-2 md:grid-cols-2 md:mt-14">
       <div>
@@ -33,7 +37,7 @@ function AuthLayout({ title, children }) {
                 <p className="inline-block pt-1">Login With Google</p>
               </button>
             )}
-            onSuccess={responseGoogle}
+            onSuccess={(response) => responseGoogle(response, dispatch)}
             onFailure={responseGoogle}
             cookiePolicy="single_host_origin"
           />
