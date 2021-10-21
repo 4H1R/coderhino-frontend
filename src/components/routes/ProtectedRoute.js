@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { Redirect, Route } from "react-router";
 
 function ProtectedRoute({
+  children,
   path,
   component,
   exact = false,
@@ -13,7 +14,11 @@ function ProtectedRoute({
   if (!isLoggedIn) {
     return <Redirect to={redirect} />;
   }
-  return <Route path={path} exact={exact} component={component} />;
+  return (
+    <Route path={path} exact={exact} component={component}>
+      {children}
+    </Route>
+  );
 }
 
 export default ProtectedRoute;

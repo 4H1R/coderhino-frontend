@@ -6,7 +6,7 @@ import logout from "../services/auth/logout";
 import { userLoggedOut } from "../stores/userSlice";
 import { motion, AnimatePresence } from "framer-motion";
 
-function AnimatedDiv({ children, className = "" }) {
+function AnimatedNav({ children, className = "" }) {
   return (
     <motion.nav
       className={className}
@@ -40,12 +40,15 @@ function Links() {
       <CustomNavLink to="/blog">Blog</CustomNavLink>
       <CustomNavLink to="/about">About</CustomNavLink>
       {isLoggedIn ? (
-        <button
-          className="w-full p-2 rounded-md gradient"
-          onClick={() => handleLogout(dispatch)}
-        >
-          Logout
-        </button>
+        <>
+          <CustomNavLink to="/app">App</CustomNavLink>
+          <button
+            className="w-full p-2 rounded-md gradient"
+            onClick={() => handleLogout(dispatch)}
+          >
+            Logout
+          </button>
+        </>
       ) : (
         <Link className="p-2 rounded-md gradient" to="/login">
           Get Started
@@ -65,7 +68,7 @@ function Navbar() {
   // Todo add animations
 
   return (
-    <div className="sticky top-0 flex flex-col py-4 font-light ">
+    <header className="sticky top-0 flex flex-col py-4 font-light ">
       <div className="flex items-center justify-between">
         <Link to="/" className="text-2xl font-bold">
           Logo
@@ -90,20 +93,20 @@ function Navbar() {
             </motion.p>
           )}
         </button>
-        <div className="items-center justify-between hidden space-x-12 sm:flex">
+        <nav className="items-center justify-between hidden space-x-12 sm:flex">
           {/* Links for tablet and pc users */}
           <Links />
-        </div>
+        </nav>
       </div>
       {/* Links for mobile users */}
       <AnimatePresence>
         {isOpen && (
-          <AnimatedDiv className="flex flex-col py-4 space-y-4 bg-black sm:hidden">
+          <AnimatedNav className="flex flex-col py-4 space-y-4 bg-black sm:hidden">
             <Links />
-          </AnimatedDiv>
+          </AnimatedNav>
         )}
       </AnimatePresence>
-    </div>
+    </header>
   );
 }
 

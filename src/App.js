@@ -7,11 +7,15 @@ import Navbar from "components/Navbar";
 import Login from "pages/auth/Login";
 import Register from "pages/auth/Register";
 import Landing from "pages/Landing";
+import Home from "pages/app/Home";
 
 function App() {
   return (
     <Router>
       <Switch>
+        <ProtectedRoute path="/app">
+          <Route exact path="/app" component={Home} />
+        </ProtectedRoute>
         <Route path="/">
           <Navbar />
           <Route exact path="/" component={Landing} />
@@ -22,7 +26,6 @@ function App() {
             </AuthLayout>
           </Route>
         </Route>
-        <ProtectedRoute path="/app"></ProtectedRoute>
       </Switch>
     </Router>
   );
