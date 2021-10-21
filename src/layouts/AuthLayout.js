@@ -8,7 +8,6 @@ import { useDispatch } from "react-redux";
 import { setUser } from "stores/userSlice";
 
 const responseGoogle = (response, dispatch) => {
-  console.log(response);
   const tokenId = response.tokenId;
   axios
     .post("/api/google/", { auth_token: tokenId })
@@ -18,6 +17,7 @@ const responseGoogle = (response, dispatch) => {
 
 function AuthLayout({ title, children }) {
   const dispatch = useDispatch();
+
   return (
     <div className="grid grid-cols-1 space-x-2 md:grid-cols-2 md:mt-14">
       <div>
@@ -37,7 +37,7 @@ function AuthLayout({ title, children }) {
                 <p className="inline-block pt-1">Login With Google</p>
               </button>
             )}
-            onSuccess={(response) => responseGoogle(response, dispatch)}
+            onSuccess={(resp) => responseGoogle(resp, dispatch)}
             onFailure={responseGoogle}
             cookiePolicy="single_host_origin"
           />
