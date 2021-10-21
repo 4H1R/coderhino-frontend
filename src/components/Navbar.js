@@ -4,10 +4,28 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import logout from "../services/auth/logout";
 import { userLoggedOut } from "../stores/userSlice";
+import { motion } from "framer-motion";
+
+const variants = {
+  open: { opacity: 1 },
+  closed: { opacity: 0 },
+};
+
+function AnimatedDiv({ children, className = "", isOpen }) {
+  return (
+    <motion.nav
+      className={className}
+      variants={variants}
+      animate={isOpen ? "open" : "closed"}
+    >
+      {children}
+    </motion.nav>
+  );
+}
 
 function CustomNavLink({ to, children }) {
   return (
-    <NavLink activeClassName="font-medium" to={to}>
+    <NavLink className="text-white" activeClassName="font-bold" to={to}>
       {children}
     </NavLink>
   );
@@ -27,13 +45,13 @@ function Links() {
       <CustomNavLink to="/about">About</CustomNavLink>
       {isLoggedIn ? (
         <button
-          className="p-2 rounded-md gradient"
+          className="w-full p-2 rounded-md gradient"
           onClick={() => handleLogout(dispatch)}
         >
           Logout
         </button>
       ) : (
-        <Link to="/login" className="p-2 rounded-md gradient">
+        <Link className="p-2 rounded-md gradient" to="/login">
           Get Started
         </Link>
       )}
@@ -64,7 +82,6 @@ function Navbar() {
           {isOpen || <FaAlignJustify size={24} />}
           {isOpen && <p className="text-2xl font-medium">X</p>}
         </button>
-
         <div className="items-center justify-between hidden space-x-12 sm:flex">
           {/* Links for tablet and pc users */}
           <Links />
@@ -72,9 +89,12 @@ function Navbar() {
       </div>
       {/* Links for mobile users */}
       {isOpen && (
-        <div className="flex flex-col py-4 space-y-4 bg-black sm:hidden">
+        <AnimatedDiv
+          isOpen={isOpen}
+          className="flex flex-col py-4 space-y-4 bg-black sm:hidden"
+        >
           <Links />
-        </div>
+        </AnimatedDiv>
       )}
     </div>
   );
