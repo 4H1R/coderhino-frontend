@@ -6,21 +6,28 @@ import logout from "../services/auth/logout";
 import { userLoggedOut } from "../stores/userSlice";
 import { motion } from "framer-motion";
 
+const variants = {
+  open: { opacity: 1 },
+  closed: { opacity: 0 },
+};
+
+function AnimatedDiv({ children, className = "", isOpen }) {
+  return (
+    <motion.nav
+      className={className}
+      variants={variants}
+      animate={isOpen ? "open" : "closed"}
+    >
+      {children}
+    </motion.nav>
+  );
+}
+
 function CustomNavLink({ to, children }) {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      whileHover={{ scale: 1.15 }}
-    >
-      <NavLink
-        className="p-2 rounded-md gradient text-gray-100 font-bold shadow-sm"
-        activeClassName="font-medium text-gray-900"
-        to={to}
-      >
-        {children}
-      </NavLink>
-    </motion.div>
+    <NavLink className="text-white" activeClassName="font-bold" to={to}>
+      {children}
+    </NavLink>
   );
 }
 
@@ -38,13 +45,15 @@ function Links() {
       <CustomNavLink to="/about">About</CustomNavLink>
       {isLoggedIn ? (
         <button
-          className="p-2 rounded-md gradient"
+          className="w-full p-2 rounded-md gradient"
           onClick={() => handleLogout(dispatch)}
         >
           Logout
         </button>
       ) : (
-        <CustomNavLink to="/login">Get Started</CustomNavLink>
+        <Link className="p-2 rounded-md gradient" to="/login">
+          Get Started
+        </Link>
       )}
     </>
   );
@@ -80,9 +89,12 @@ function Navbar() {
       </div>
       {/* Links for mobile users */}
       {isOpen && (
-        <div className="flex flex-col py-4 space-y-4 bg-black sm:hidden">
+        <AnimatedDiv
+          isOpen={isOpen}
+          className="flex flex-col py-4 space-y-4 bg-black sm:hidden"
+        >
           <Links />
-        </div>
+        </AnimatedDiv>
       )}
     </div>
   );

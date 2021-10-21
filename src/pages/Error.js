@@ -7,7 +7,7 @@ function Error({ onClick }) {
       <motion.h1
         initial={{ x: -100, opacity: 0 }}
         animate={{ x: 0, opacity: [0, 50, 100] }}
-        className="text-2xl font-bold text-white"
+        className="text-2xl font-bold text-center text-white"
       >
         Sorry we got an error please try again later.
       </motion.h1>
