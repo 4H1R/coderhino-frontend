@@ -4,12 +4,23 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import logout from "../services/auth/logout";
 import { userLoggedOut } from "../stores/userSlice";
+import { motion } from "framer-motion";
 
 function CustomNavLink({ to, children }) {
   return (
-    <NavLink activeClassName="font-medium" to={to}>
-      {children}
-    </NavLink>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      whileHover={{ scale: 1.15 }}
+    >
+      <NavLink
+        className="p-2 rounded-md gradient text-gray-100 font-bold shadow-sm"
+        activeClassName="font-medium text-gray-900"
+        to={to}
+      >
+        {children}
+      </NavLink>
+    </motion.div>
   );
 }
 
@@ -33,9 +44,7 @@ function Links() {
           Logout
         </button>
       ) : (
-        <Link to="/login" className="p-2 rounded-md gradient">
-          Get Started
-        </Link>
+        <CustomNavLink to="/login">Get Started</CustomNavLink>
       )}
     </>
   );
@@ -64,7 +73,6 @@ function Navbar() {
           {isOpen || <FaAlignJustify size={24} />}
           {isOpen && <p className="text-2xl font-medium">X</p>}
         </button>
-
         <div className="items-center justify-between hidden space-x-12 sm:flex">
           {/* Links for tablet and pc users */}
           <Links />
