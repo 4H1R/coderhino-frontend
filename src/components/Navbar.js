@@ -4,19 +4,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import logout from "../services/auth/logout";
 import { userLoggedOut } from "../stores/userSlice";
-import { motion } from "framer-motion";
-
-const variants = {
-  open: {},
-  closed: {},
-};
+import { motion, AnimatePresence } from "framer-motion";
 
 function AnimatedDiv({ children, className = "", isOpen }) {
   return (
     <motion.nav
       className={className}
-      variants={variants}
-      animate={isOpen ? "open" : "closed"}
+      initial={{ opacity: 0 }}
+      exit={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
     >
       {children}
     </motion.nav>
@@ -100,14 +96,16 @@ function Navbar() {
         </div>
       </div>
       {/* Links for mobile users */}
-      {isOpen && (
-        <AnimatedDiv
-          isOpen={isOpen}
-          className="flex flex-col py-4 space-y-4 bg-black sm:hidden"
-        >
-          <Links />
-        </AnimatedDiv>
-      )}
+      <AnimatePresence>
+        {isOpen && (
+          <AnimatedDiv
+            isOpen={isOpen}
+            className="flex flex-col py-4 space-y-4 bg-black sm:hidden"
+          >
+            <Links />
+          </AnimatedDiv>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
