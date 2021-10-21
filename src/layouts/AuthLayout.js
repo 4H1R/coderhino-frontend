@@ -11,7 +11,7 @@ const responseGoogle = (response, dispatch) => {
   const tokenId = response.tokenId;
   axios
     .post("/api/google/", { auth_token: tokenId })
-    .then((resp) => dispatch(setUser(resp)))
+    .then((resp) => dispatch(setUser(resp.data)))
     .catch((err) => console.log(err));
 };
 
