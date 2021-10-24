@@ -1,55 +1,48 @@
 import React from "react";
-import { motion } from "framer-motion";
+import frameMotionImage from "assets/images/framermotionimage.jpeg";
+import reactQueryImage from "assets/images/reactqueryimage.png";
+import reactRouterDomImage from "assets/images/reactrouterdomimage.png";
+import reduxImage from "assets/images/reduxlogoimage.png";
+import Head from "components/Head";
+
+function Heading({ children }) {
+  return (
+    <h1 className="text-4xl font-bold text-center text-gradient">{children}</h1>
+  );
+}
 
 function About() {
   return (
-    <div className="items-center justify-center">
-      <h1 className="text-4xl font-bold text-white">About</h1>
-      <br />
-      <br />
-      <div>
-        <h2 className="text-3xl font-bold text-white">Developers</h2>
-        <br />
-        <ul className="text-2xl text-white">
-          <li>Ali Alizadeh</li>
-          <li>Paul Pavlinskyi</li>
-          <li>Owen Burnett</li>
-        </ul>
-        <br />
-        <br />
-        <h2 className="text-3xl font-bold text-white">Dependencies Used</h2>
-        <br />
-        <div className="min-h-screen ">
-          <div className="justify-center text-2xl text-white">
-            <label for="framermotionimage">Framer Motion</label>
-            <img
-              id="framermotionimage"
-              src="src/framermotionimage.jpeg"
-              alt="Framer Motion Logo"
-            />
-            <br />
-            <label for="reactqueryimage">React Query</label>
-            <img
-              id="reactqueryimage"
-              src="src/reactqueryimage.png"
-              alt="React Query Logo"
-            />
-            <br />
-            <label for="reactrouterdomimage">React Router DOM</label>
-            <img
-              id="reactrouterdomimage"
-              src="src/reactrouterdomimage.png"
-              alt="React Router DOM Logo"
-            />
-            <br />
-            <label for="reduxlogoimage">Redux</label>
-            <img
-              id="reduxlogoimage"
-              src="src/reduxlogoimage.png"
-              alt="Redux Logo"
-            />
-          </div>
-        </div>
+    <div className="space-y-4">
+      <Head title="About" desc="About Page" />
+      <Heading>Developers</Heading>
+      <ul className="text-2xl text-white">
+        <li>Ali Alizadeh</li>
+        <li>Paul Pavlinskyi</li>
+        <li>Owen Burnett</li>
+      </ul>
+      <Heading>Dependencies Used</Heading>
+      <div className="flex flex-col space-y-4 text-2xl ">
+        <h2>Framer Motion</h2>
+        <img
+          className="w-1/2 md:w-1/4"
+          src={frameMotionImage}
+          alt="Framer Motion Logo"
+        />
+        <h2>React Query</h2>
+        <img
+          className="w-1/2 md:w-1/4"
+          src={reactQueryImage}
+          alt="React Query Logo"
+        />
+        <h2>React Router DOM</h2>
+        <img
+          className="w-1/2 md:w-1/4"
+          src={reactRouterDomImage}
+          alt="React Router DOM Logo"
+        />
+        <h2>Redux</h2>
+        <img className="w-1/2 md:w-1/4" src={reduxImage} alt="Redux Logo" />
       </div>
     </div>
   );

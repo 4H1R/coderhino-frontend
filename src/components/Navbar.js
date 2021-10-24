@@ -33,10 +33,10 @@ function Links() {
   async function handleLogout(dispatch) {
     await logout();
     dispatch(userLoggedOut());
+    localStorage.removeItem("id");
   }
   return (
     <>
-      <CustomNavLink to="/technologies">Technologies</CustomNavLink>
       <CustomNavLink to="/blog">Blog</CustomNavLink>
       <CustomNavLink to="/about">About</CustomNavLink>
       {isLoggedIn ? (
@@ -68,7 +68,7 @@ function Navbar() {
   // Todo add animations
 
   return (
-    <header className="sticky top-0 flex flex-col py-4 font-light ">
+    <header className="sticky top-0 flex flex-col py-4 font-light bg-black">
       <div className="flex items-center justify-between">
         <Link to="/" className="text-2xl font-bold">
           Logo

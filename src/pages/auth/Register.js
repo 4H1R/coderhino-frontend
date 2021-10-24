@@ -1,11 +1,13 @@
 import Head from "components/Head";
 import React from "react";
 import { Formik, Form } from "formik";
-import { Input, Button, Link } from "components/auth/Form";
+import { Link } from "components/auth/Form";
 import * as Yup from "yup";
 import register from "services/auth/register";
 import { useDispatch } from "react-redux";
 import { setUser } from "stores/userSlice";
+import Input from "shared/form/Input";
+import Button from "shared/form/Button";
 
 const validationSchema = Yup.object().shape({
   username: Yup.string()

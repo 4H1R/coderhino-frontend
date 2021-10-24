@@ -2,7 +2,7 @@ import Error from "pages/Error";
 import Splash from "pages/Splash";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import me from "services/auth/me";
+import { getMe } from "services/auth/me";
 import { setUser, userIsNotLoggedIn } from "stores/userSlice";
 
 function Bootstrap({ children }) {
@@ -12,7 +12,7 @@ function Bootstrap({ children }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    me()
+    getMe()
       .then((data) => {
         setHasError(false);
         dispatch(setUser(data));
