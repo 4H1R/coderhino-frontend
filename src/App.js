@@ -10,6 +10,7 @@ import Landing from "pages/Landing";
 import Home from "pages/app/Home";
 import Me from "./pages/app/Me";
 import About from "pages/About";
+import CreateServer from "pages/auth/CreateServer";
 
 function App() {
   return (
