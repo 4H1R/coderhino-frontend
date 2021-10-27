@@ -18,6 +18,7 @@ function App() {
         <ProtectedRoute path="/app">
           <Route exact path="/app" component={Home} />
           <Route exact path="/app/me" component={Me} />
+          <Route exact path="/app/create_server" component={CreateServer} />
         </ProtectedRoute>
         <Route path="/">
           <Navbar />
