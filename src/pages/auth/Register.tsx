@@ -1,5 +1,5 @@
 import React from "react";
-import Head from "shared/Head";
+import Head from "shared/elements/Head";
 import { Formik, Form } from "formik";
 import { Button, Link } from "components/auth/Form";
 import * as Yup from "yup";
@@ -42,7 +42,6 @@ function Register() {
           passwordConfirmation: "",
         }}
         validationSchema={validationSchema}
-        //  onSubmit outputs values for now
         onSubmit={async (values, { setErrors }) => {
           const { wasSuccessful, data } = await register(values);
           if (!wasSuccessful) {

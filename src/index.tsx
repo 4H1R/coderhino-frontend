@@ -8,7 +8,14 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { HelmetProvider } from "react-helmet-async";
 import Bootstrap from "app/Bootstrap";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      retry: false,
+    },
+  },
+});
 ReactDOM.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>

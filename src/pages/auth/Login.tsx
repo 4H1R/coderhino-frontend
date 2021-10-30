@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { setUser } from "stores/userSlice";
 import login from "services/auth/login";
 import Input from "shared/form/Input";
-import Head from "shared/Head";
+import Head from "shared/elements/Head";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -27,7 +27,6 @@ function Login() {
       <Formik
         initialValues={{ email: "", password: "" }}
         validationSchema={validationSchema}
-        //  onSubmit outputs values for now
         onSubmit={async (values, { setErrors }) => {
           const { wasSuccessful, data } = await login(values);
           if (!wasSuccessful) {

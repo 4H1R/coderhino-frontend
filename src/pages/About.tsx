@@ -3,7 +3,7 @@ import frameMotionImage from "assets/images/framermotionimage.jpeg";
 import reactQueryImage from "assets/images/reactqueryimage.png";
 import reactRouterDomImage from "assets/images/reactrouterdomimage.png";
 import reduxImage from "assets/images/reduxlogoimage.png";
-import Head from "shared/Head";
+import Head from "shared/elements/Head";
 
 type HeadingProps = {
   children: React.ReactNode;

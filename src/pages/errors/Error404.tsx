@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Head from "shared/Head";
+import Head from "shared/elements/Head";
 
 function Error404() {
   return (
