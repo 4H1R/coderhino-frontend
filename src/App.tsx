@@ -7,6 +7,7 @@ import {
   aboutPath,
   appBasePath,
   appHomePath,
+  appInvitesListPath,
   appMePath,
   appServersCreatePath,
   blogPath,
@@ -24,6 +25,7 @@ import Me from "pages/app/Me";
 import { default as ServersCreate } from "pages/app/servers/Create";
 import Error404 from "pages/errors/Error404";
 import Blog from "pages/Blog";
+import InvitesList from "pages/app/invites/InvitesList";
 
 function App() {
   return (
@@ -36,6 +38,11 @@ function App() {
             exact
             path={appServersCreatePath()}
             component={ServersCreate}
+          />
+          <Route
+            exact
+            path={appInvitesListPath()}
+            component={InvitesList}
           />
         </ProtectedRoute>
         <Route path="/">

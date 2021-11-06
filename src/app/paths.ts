@@ -7,3 +7,4 @@ export const appBasePath = () => "/app";
 export const appHomePath = () => appBasePath();
 export const appMePath = () => appBasePath() + "/me";
 export const appServersCreatePath = () => appBasePath() + "/servers/create";
+export const appInvitesListPath = () => appBasePath() + "/invites";
