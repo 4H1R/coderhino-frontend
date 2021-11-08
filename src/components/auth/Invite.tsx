@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { inviteAcceptOrReject } from 'services/auth/invitations';
 
 function Invite(props: any) {
-    console.log(props);
+    
+    const [actionTaken, setActionTaken] = useState("");
 
     const accept = (e: any) => {
         e.preventDefault();
@@ -15,6 +16,7 @@ function Invite(props: any) {
         }
 
         inviteAcceptOrReject(data);
+        setActionTaken("A");
     }
 
     const reject = (e: any) => {
@@ -28,15 +30,27 @@ function Invite(props: any) {
         }
 
         inviteAcceptOrReject(data);
+        setActionTaken("R");
     }
 
+       
     return (
-        <div>
+        <>
             <h2>{props.server_name}</h2>
             <div>{props.message}</div><br />
-            <button onClick={reject}>&#x2715;</button>
-            <button onClick={accept}>&#10003;</button>
-        </div>
+            
+            {actionTaken === "A" &&
+            <h2>Invitation Accepted</h2>}
+
+            {actionTaken === "R" &&
+            <h2>Invitation Declined</h2>}
+            
+            {actionTaken !== "A" && actionTaken !== "R" && 
+            <>
+                <button onClick={reject}>&#x2715;</button> 
+                <button className="circle-checkmark" onClick={accept}>&#9989;</button>
+            </>}
+        </>
     );
 };
 

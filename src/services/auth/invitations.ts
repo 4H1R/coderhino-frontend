@@ -22,16 +22,9 @@ export default function getInvites() {
 }
 
 export async function inviteAcceptOrReject(data: Invitation) {
-  try {
-    const resp: AxiosResponse<Invitation> = await axios.post(
-      "api/my_invitations_response",
-      data
-    );
-    return {
-      wasSuccessful: true,
-      data: resp.data,
-    };
-  } catch (e: any) {
-    return { wasSuccessful: false, data: e.response.data };
-  }
+  const resp: AxiosResponse<Invitation> = await axios.post(
+    "api/my_invitations_response/" + data.id + "/",
+    data
+  );
+  return resp.data
 }

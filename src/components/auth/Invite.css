@@ -1,0 +1,7 @@
+.circle-checkmark {
+  font-family: sans-serif;
+  background: rgb(3, 245, 3);
+  color: white;
+  padding: 1px 4px;
+  border-radius: 50%;
+}

@@ -22,12 +22,12 @@ function InvitesList() {
           <Form>
             <div>
               <ul>
-                {data.map((invites) => (
-                  <li>
+                {data.map((invite) => (
+                  <li key={invite.id}>
                     <Invite
-                      id={invites.id}
-                      server_name={invites.server_name}
-                      message={invites.message}
+                      id={invite.id}
+                      server_name={invite.server_name}
+                      message={invite.message}
                     />
                   </li>
                 ))}
