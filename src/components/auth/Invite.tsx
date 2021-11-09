@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { inviteAcceptOrReject } from 'services/auth/invitations';
+import checkmark from "assets/images/checkmark.png";
 
 function Invite(props: any) {
     
@@ -21,7 +22,6 @@ function Invite(props: any) {
 
     const reject = (e: any) => {
         e.preventDefault();
-
         const data = {
             id: props.id,
             server_name: props.server_name,
@@ -33,24 +33,26 @@ function Invite(props: any) {
         setActionTaken("R");
     }
 
-       
     return (
-        <>
-            <h2>{props.server_name}</h2>
-            <div>{props.message}</div><br />
+        <div className="flex-grow row-auto p-1 mt-2 mb-2 overflow-hidden bg-gray-800 border border-blue-200 rounded-lg ">
+            <div>
+                {props.server_name}
+        
+                {actionTaken !== "A" && actionTaken !== "R" && 
+                <div className="float-right">
+                    <button className="mt-2 border-black" onClick={reject}>❌</button> 
+                    <button className="w-6 h-6 mt-2 ml-2" onClick={accept}><img src={checkmark} alt="check mark" /></button>
+                </div>}
+            </div>
+
+            <p>{props.message}</p>
             
             {actionTaken === "A" &&
-            <h2>Invitation Accepted</h2>}
+            <p className="text-blue-300">Invitation Accepted</p>}
 
             {actionTaken === "R" &&
-            <h2>Invitation Declined</h2>}
-            
-            {actionTaken !== "A" && actionTaken !== "R" && 
-            <>
-                <button onClick={reject}>&#x2715;</button> 
-                <button className="circle-checkmark" onClick={accept}>&#9989;</button>
-            </>}
-        </>
+            <p className="text-blue-300">Invitation Declined</p>}
+        </div>
     );
 };
 

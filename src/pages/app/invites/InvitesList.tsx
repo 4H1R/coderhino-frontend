@@ -15,6 +15,7 @@ function InvitesList() {
     return (
       <>
         <Head title="My Invites" desc="My Invites page" />
+        <p className="pt-3 pb-3 text-3xl">My Invites</p>
         <Formik
           initialValues={{}}
           onSubmit={async (values, { setErrors }) => {}}
