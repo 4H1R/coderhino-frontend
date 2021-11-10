@@ -34,7 +34,7 @@ function Invite(props: any) {
     }
 
     return (
-        <div className="flex-grow row-auto p-1 mt-2 mb-2 overflow-hidden bg-gray-800 border border-blue-200 rounded-lg ">
+        <div className="flex-wrap flex-grow row-auto p-1 mt-2 mb-2 overflow-hidden break-all bg-gray-800 border border-blue-200 rounded-lg ">
             <div>
                 {props.server_name}
         
@@ -48,7 +48,7 @@ function Invite(props: any) {
             <p>{props.message}</p>
             
             {actionTaken === "A" &&
-            <p className="text-blue-300">Invitation Accepted</p>}
+            <p className="text-blue-300 border-t-2">Invitation Accepted</p>}
 
             {actionTaken === "R" &&
             <p className="text-blue-300">Invitation Declined</p>}
