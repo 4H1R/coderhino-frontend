@@ -34,7 +34,7 @@ function Invite(props: any) {
     }
 
     return (
-        <div className="flex-wrap flex-grow row-auto p-1 mt-2 mb-2 overflow-hidden break-all bg-gray-800 border border-blue-200 rounded-lg ">
+        <div className="p-1 mt-2 mb-2 overflow-hidden break-all bg-gray-800 border border-blue-200 rounded-lg ">
             <div>
                 {props.server_name}
         

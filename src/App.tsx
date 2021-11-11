@@ -14,6 +14,7 @@ import {
   landingPath,
   loginPath,
   registerPath,
+  appUserProfileInfoPath
 } from "app/paths";
 import Navbar from "components/Navbar";
 import Login from "pages/auth/Login";
@@ -26,6 +27,7 @@ import { default as ServersCreate } from "pages/app/servers/Create";
 import Error404 from "pages/errors/Error404";
 import Blog from "pages/Blog";
 import InvitesList from "pages/app/invites/InvitesList";
+import UserProfileInfo from "pages/app/userprofile/UserProfileInfo";
 
 function App() {
   return (
@@ -43,6 +45,11 @@ function App() {
             exact
             path={appInvitesListPath()}
             component={InvitesList}
+          />
+          <Route
+            exact
+            path={appUserProfileInfoPath()}
+            component={UserProfileInfo}
           />
         </ProtectedRoute>
         <Route path="/">
