@@ -10,8 +10,7 @@ function UserProfileInfo() {
     const [userName, setUserName] = useState("");
     const [aboutUser, setAboutUser] = useState("");
     const [profilePic, setProfilePic] = useState("");
-    let picPath = ""
-
+    const linkPrefix = "http://localhost:8000";
     const getData = async (e :any) => {
         const userInfo :any = await getUserInfo();
         console.log(userInfo.data);
@@ -25,7 +24,7 @@ function UserProfileInfo() {
         setAboutUser(data.about);
         setProfilePic(data.profile_pic);
 
-        picPath = "/home/user1/Code/reactprojs/CodeRhino" + profilePic;
+        //picPath = "/home/user1/Code/reactprojs/CodeRhino" + profilePic;
 
         console.log(userId);
         console.log(userName);
@@ -46,8 +45,7 @@ function UserProfileInfo() {
             >
             <Form>
                 <div>
-                    <img src={require("file:///home/user1/Code/reactprojs/CodeRhino/pictures/default-pic.png")} alt="Profile Picture" />
-                    
+                    <img src={linkPrefix+profilePic} alt="Profile Picture" />
                             {userId}
                             {userName}
                             {aboutUser}
